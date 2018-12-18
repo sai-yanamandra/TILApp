@@ -14,6 +14,7 @@ final class Acronym: Codable {
 }
 
 extension Acronym: SQLiteModel {}
-extension Acronym:
+extension Acronym: Content {}
+extension Acronym: Migration {}
 
 
