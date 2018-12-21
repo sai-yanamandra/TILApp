@@ -3,12 +3,17 @@ import FluentSQLite
 import Vapor
 
 final class Category: Codable {
-    
     var id: Int?
-    var name: String
+   // var idd: Int
+    var title: String
+    var userId: Int
+    var completed: Bool
     
-    init(name: String) {
-        self.name = name
+    init(id: Int,userId: Int,title: String,completed: Bool) {
+        self.title = title
+       // self.idd = id
+        self.userId = userId
+        self.completed = completed
     }
 }
 
