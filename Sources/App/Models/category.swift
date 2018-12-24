@@ -1,21 +1,21 @@
 
-import FluentSQLite
+//import FluentSQLite
 import Vapor
 
 final class Category: Codable {
-    var id: Int?
-    var title: String
-    var userId: Int
-    var completed: Bool
+    var id: String
+    var timestamp: String
+    var lang: String
+    var sessionId: String
     
-    init(id: Int,userId: Int,title: String,completed: Bool) {
-        self.title = title
+    init(id: String, timestamp: String,lang: String,sessionId: String) {
         self.id = id
-        self.userId = userId
-        self.completed = completed
+        self.timestamp = timestamp
+        self.lang = lang
+        self.sessionId = sessionId
     }
 }
 
-extension Category: SQLiteModel {}
+//extension Category: SQLiteModel {}
 extension Category: Content {}
-extension Category: Migration {}
+//extension Category: Migration {}
