@@ -11,19 +11,7 @@ struct CategoriesController: RouteCollection {
         
     }
     
-//    func createHandler(_ req: Request) throws -> Future<Category> {
-//        return try req.content.decode(Category.self).flatMap(to: Category.self) { category in
-//            return category.save(on: req)
-//        }
-//
-//    }
-    
-//    func getAllHandler(_ req: Request) throws -> Future<[Category]> {
-//        return Category.query(on: req).all()
-//    }
-    
     func getHandler(_ req: Request) throws -> Future<String> {
-        //return try req.parameters.next(Category.self)
         
         // Fetch an HTTP Client instance
         let client = try req.make(Client.self)
@@ -34,7 +22,6 @@ struct CategoriesController: RouteCollection {
         //let headers = HTTPHeaders("Authorization","Bearer e59a8939c0514bd793d952254c65e7b8")
         
         let queryParam = try req.parameters.next(Category.self)
-        print("Query Param: \(queryParam)")
         let query = "https://api.dialogflow.com/v1/query?v=20150910&contexts=shop&lang=en&query=" + queryParam + "&sessionId=12345&timezone=America/New_York"
     
         let response = client.get(query, headers: headers)
