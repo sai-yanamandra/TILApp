@@ -22,7 +22,7 @@ struct CategoriesController: RouteCollection {
 //        return Category.query(on: req).all()
 //    }
     
-    func getHandler(_ req: Request) throws -> Future<Category> {
+    func getHandler(_ req: Request) throws -> Future<String> {
         //return try req.parameters.next(Category.self)
         
         // Fetch an HTTP Client instance
@@ -39,12 +39,13 @@ struct CategoriesController: RouteCollection {
     
         let response = client.get(query, headers: headers)
         
-//        return try response.map(to: String.self) { response -> String in
-//           return try response.content.syncGet(at: "fulfillment","speech")
-//        }
-        // Transforms the `Future<Response>` to `Future<ExampleData>`
-        return try response.flatMap(to: Category.self) { response in
+        // Transforms the `Future<Response>` to `Future<Category>`
+        let category =  response.flatMap(to: Category.self) { response in
             return try response.content.decode(Category.self)
+        }
+        
+        return category.map(to: String.self) { category in
+            return category.result.fulfillment.speech
         }
     }
 }
